@@ -24,21 +24,22 @@ module.exports = class userController {
         (err) => {
           if (err) {
             if (err.code === "ER_DUP_ENTRY") {
-              if (err.message.includes("for key 'email'")) {
+              if (err.message.includes('email')) {
                 return res.status(400).json({ error: "Email já cadastrado" });
-              } else {
-                return res
-                  .status(500)
-                  .json({ error: "Erro interno do servidor", err });
-              }
+              } 
             }
-          } 
-          else {
+            else {
+              console.log(err)
+              return res
+                .status(500)
+                .json({ error: "Erro interno do servidor", err });
+            }
+          }
           return res
             .status(201)
             .json({ message: "Usuário criado com sucesso" });
         }
-        })
+      );
     } catch (error) {
       return res.status(500).json({ error });
     }
@@ -79,15 +80,21 @@ module.exports = class userController {
         "UPDATE usuario SET cpf = ?, email = ?, password = ?, name = ? WHERE id_usuario = ?";
       connect.query(query, [cpf, email, password, name, id], (err, results) => {
         if (err) {
+          if (err.code === "ER_DUP_ENTRY") {
+            if (err.message.includes('email')) {
+              return res.status(400).json({ error: "Email já cadastrado" });
+            } 
           return res.status(500).json({ error: "Erro interno do servidor" });
         }
+      }
         if (results.affectedRows === 0) {
           return res.status(404).json({ error: "Usuário não encontrado" });
         }
         return res
           .status(200)
           .json({ message: "Usuário atualizado com sucesso" });
-      });
+      
+    });
     } catch (error) {
       return res.status(500).json({ error });
     }

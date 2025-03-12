@@ -12,12 +12,12 @@ module.exports = async function validateCpf(cpf, userId = null) {
         const cpfCadastrado = results[0].id_usuario;
 
         // Se um userId foi passado (update) e o CPF pertence a outro usuário, retorna erro
-        if (userId && cpfCadastrado !== userId) {
-          resolve({ error: "CPF já cadastrado para outro usuário" });
+        if (userId && cpfCadastrado == userId) {
+          resolve(null);
         } else if (!userId) {
           resolve({ error: "CPF já cadastrado" });
         } else {
-          resolve(null);
+          resolve({ error: "CPF já cadastrado para outro usuário" });
         }
       } else {
         resolve(null);
