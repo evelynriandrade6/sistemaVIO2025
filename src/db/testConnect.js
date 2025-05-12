@@ -7,8 +7,9 @@ module.exports = function testConnect() {
       if (err) {
         console.log("Conexão não realizada.", err);
         return;
-      }
+      }else {
       console.log("A conexão com MySQL foi bem-sucedida.");
+      }
     });
   } catch(error) {
     console.error("Erro ao executar a consulta.", error);
