@@ -33,4 +33,8 @@ router.get("/ingresso/:id", ingressoController.getByIdEvento);
 router.put("/ingresso/", ingressoController.updateIngresso);
 router.delete("/ingresso/:id",ingressoController.deleteIngresso);
 
+const compraController = require ("../controller/compraController");
+
+router.post("/comprasimples", compraController.registrarCompraSimples);
+router.post("/compra", compraController.registrarCompra);
 module.exports = router;
