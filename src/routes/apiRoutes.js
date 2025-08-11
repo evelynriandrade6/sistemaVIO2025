@@ -20,11 +20,13 @@ router.delete('/organizador/:id', orgController.deleteOrg);
 const eventoController = require("../controller/eventoController");
 
 router.post("/evento/", upload.single("imagem") , eventoController.createEvento);
+router.get("/evento/imagem/:id", eventoController.getImagemEvento);
 router.get("/evento/", verifyJWT, eventoController.getAllEventos);
 router.put("/evento/", eventoController.updateEvento);
 router.delete("/evento/:id",eventoController.deleteEvento);
 router.get("/evento/data", eventoController.getEventosPorData);
 router.get("/evento/semana/:data", verifyJWT, eventoController.getEventosSemana);
+
 
 const ingressoController = require("../controller/ingressoController");
 
