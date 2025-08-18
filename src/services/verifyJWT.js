@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 function verifyJWT(req, res, next){
     const token = req.headers["authorization"];
     
-
     if(!token){
         return res.status(401).json({auth:false, message:"Token não foi fornecido"});
     }
