@@ -8,7 +8,9 @@ create table usuario (
 );
 
 insert into usuario (name, email, password, cpf, data_nascimento) values
-('João Silva', 'joao.silva@example.com', '123', '16123456789', '1990-01-15');
+('João Silva', 'joao.silva@example.com', '123', '16123456789', '1990-01-15'),
+('Emily Silva', 'emily.silva@example.com', '123', '16123456771', '2005-04-10'),
+('Vidal Santos', 'visal.santos@example.com', '123', '1612345699', '2000-07-25');
 	
 create table organizador (
 	id_organizador int auto_increment primary key,
